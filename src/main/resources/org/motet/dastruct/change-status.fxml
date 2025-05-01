@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.control.Spinner?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.motet.dastruct.ChangeStatusController" spacing="10" style="-fx-padding: 20;">
+    <Label text="Change Room Status" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+    <Label text="Status:" />
+    <ComboBox fx:id="statusComboBox" />
+
+    <Label text="Duration (Hour):" />
+    <Spinner fx:id="durationHourSpinner" prefWidth="80" />
+    <Label text="Duration (Minute):" />
+    <Spinner fx:id="durationMinuteSpinner" prefWidth="80" />
+
+    <HBox spacing="10">
+        <Button text="Save" fx:id="saveButton" onAction="#onSaveButtonClick" />
+        <Button text="Cancel" fx:id="cancelButton" onAction="#onCancelButtonClick" />
+    </HBox>
+</VBox>

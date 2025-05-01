@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Spinner?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.motet.dastruct.ReserveController" spacing="10" style="-fx-padding: 20;">
+    <ListView fx:id="reservationListView" prefHeight="200" />
+
+    <DatePicker fx:id="reservationDatePicker" />
+
+    <Spinner fx:id="hourSpinner" prefWidth="80" />
+    <Spinner fx:id="minuteSpinner" prefWidth="80" />
+
+    <Button text="Add Reservation" fx:id="addReservationButton" onAction="#onAddReservationButtonClick" />
+
+    <Button text="Close" fx:id="closeButton" onAction="#onCloseButtonClick" />
+</VBox>

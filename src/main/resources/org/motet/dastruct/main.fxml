@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+
+<ScrollPane fx:id="scrollPane" fitToWidth="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="org.motet.dastruct.MainController">
+    <VBox spacing="20">
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem fx:id="importMenuItem" text="Import Rooms (CSV)" onAction="#onImportRooms" />
+                <MenuItem fx:id="exportMenuItem" text="Export Rooms (CSV)" onAction="#onExportRooms" />
+            </Menu>
+        </MenuBar>
+        <TextField fx:id="searchField" promptText="Search rooms by name, type, or status..." onKeyReleased="#onSearch" />
+        <VBox>
+            <FlowPane fx:id="roomFlow" hgap="20" vgap="20" alignment="CENTER" prefWrapLength="0">
+                <!-- Room cards will be dynamically added here -->
+            </FlowPane>
+        </VBox>
+    </VBox>
+</ScrollPane>
