@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.control.Button?>
+<VBox fx:id="roomCardVBox" spacing="10" style="-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-padding: 15; -fx-background-radius: 10; -fx-border-radius: 10;" xmlns:fx="http://javafx.com/fxml" fx:controller="org.motet.dastruct.RoomCardController">
+    <Label fx:id="roomNameLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+    <Label fx:id="roomTypeLabel" />
+    <HBox spacing="5">
+        <Circle fx:id="statusCircle" radius="5" />
+        <Label fx:id="statusLabel" />
+    </HBox>
+    <Label fx:id="capacityLabel" />
+    <Label fx:id="reservationLabel" />
+    <HBox spacing="10">
+        <Button fx:id="reserveButton" text="Reserve" onAction="#onReserve" />
+        <Button fx:id="changeStatusButton" text="Change Status" onAction="#onChangeStatus" />
+    </HBox>
+</VBox>

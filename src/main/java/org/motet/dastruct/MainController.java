@@ -28,6 +28,7 @@ import java.nio.file.Paths;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.Node;
 
 public class MainController {
 
@@ -114,7 +115,7 @@ public class MainController {
         return roomCard;
     }
 
-    private void openChangeStatusWindow(Room room) {
+    protected void openChangeStatusWindow(Room room) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("change-status.fxml"));
             Parent root = loader.load();
@@ -133,7 +134,7 @@ public class MainController {
         }
     }
 
-    private void openReserveWindow(Room room) {
+    protected void openReserveWindow(Room room) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/motet/dastruct/reserve.fxml"));
             Parent root = loader.load();
@@ -241,9 +242,15 @@ public class MainController {
             if (room.getName().toLowerCase().contains(query) ||
                 room.getType().toLowerCase().contains(query) ||
                 room.getStatus().toLowerCase().contains(query)) {
-                VBox roomCard = createRoomCard(room);
-                roomCard.setPrefWidth(300);
-                roomFlow.getChildren().add(roomCard);
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("room-card.fxml"));
+                    Node cardNode = loader.load();
+                    RoomCardController cardController = loader.getController();
+                    cardController.setRoom(room, this);
+                    roomFlow.getChildren().add(cardNode);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -257,9 +264,15 @@ public class MainController {
         saveRoomsToCsv();
         roomFlow.getChildren().clear();
         for (Room room : rooms) {
-            VBox roomCard = createRoomCard(room);
-            roomCard.setPrefWidth(300); // Responsive card width
-            roomFlow.getChildren().add(roomCard);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("room-card.fxml"));
+                Node cardNode = loader.load();
+                RoomCardController cardController = loader.getController();
+                cardController.setRoom(room, this);
+                roomFlow.getChildren().add(cardNode);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
