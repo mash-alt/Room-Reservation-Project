@@ -54,20 +54,27 @@ public class MainController {
             roomFlow.getChildren().clear();
             roomFlow.getChildren().add(importPromptText);
         }
-    }
-
-    private void addCountdown(Label label, Room room) {
+    }    private void addCountdown(Label label, Room room) {
+        System.out.println("DEBUG: Starting countdown for room: " + room.getName());
+        System.out.println("DEBUG: Initial end time: " + room.getOccupancyEndTime());
+        
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             java.time.Duration remaining = room.getRemainingOccupancyDuration();
-            if (remaining != null && !remaining.isZero()) {
+            System.out.println("DEBUG: " + room.getName() + " - Remaining duration: " + remaining);
+            
+            if (remaining != null && !remaining.isZero() && !remaining.isNegative()) {
                 long hours = remaining.toHours();
                 long minutes = (remaining.toMinutes() % 60);
                 long seconds = (remaining.getSeconds() % 60);
-                label.setText("Occupied (" + String.format("%02d:%02d:%02d", hours, minutes, seconds) + ")");
+                String formattedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+                System.out.println("DEBUG: Setting countdown text: " + formattedTime);
+                label.setText("Occupied (" + formattedTime + ")");
             } else {
+                System.out.println("DEBUG: Countdown finished or invalid for " + room.getName());
                 label.setText("Occupied (00:00:00)");
                 // Change status to Vacant and refresh UI
                 if (room.getStatus().equals("Occupied")) {
+                    System.out.println("DEBUG: Changing room status to Vacant");
                     room.setStatus("Vacant");
                     room.setOccupancyEndTime(null);
                     refreshRoomGrid();
@@ -76,6 +83,7 @@ public class MainController {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+        System.out.println("DEBUG: Timeline started for " + room.getName());
     }
 
     private VBox createRoomCard(Room room) {
